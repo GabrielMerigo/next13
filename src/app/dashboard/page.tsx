@@ -1,20 +1,12 @@
-import Link from "next/link";
+import { Repo } from "@/components/Repo";
+import { User } from "@/components/User";
+import { useRouter } from "next/router";
 
-export const revalidate = 30;
-
-export default async function Dashboard() {
-  const response = await fetch("https://api.github.com/users/gabrielmerigo", {
-    next: {
-      revalidate: 30,
-    },
-  });
-
-  const user = await response.json();
-
+export default function Dashboard() {
   return (
     <div>
-      <pre>{JSON.stringify(user, null, 2)}</pre>
-      <Link href="/dashboard">Dashboard</Link>
+      <User />
+      <Repo />
     </div>
   );
 }
